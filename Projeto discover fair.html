@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde & Bem-estar Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f0f2f5;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0; }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: #27ae60;
+            font-weight: 500;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        h2 { color: #27ae60; }
+        input, button, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover { background: #219150; }
+        #resultado {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #27ae60;
+            color: white;
+            margin-top: 20px;
+        }
+    
+        @keyframes flutuar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .celular {
+            animation: flutuar 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="display:flex; align-items:center; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:15px;">
+        <div style="width:80px; height:80px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+            <img src="C:\Users\aluno\Pictures\Saved Pictures\logo.jpeg" alt="Logo" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+    </div>
+    <h1>Saúde & Bem-estar</h1>
+    <p>Seu guia completo para uma vida mais saudável</p>
+    <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74" style="width:100%; max-height:250px; object-fit:cover; border-radius:10px; margin-top:15px;">
+</header>
+
+<nav>
+    <a href="#app">App</a>
+    <a href="#imc">IMC</a>
+    <a href="#dicas">Dicas</a>
+    <a href="#habitos">Hábitos</a>
+</nav>
+
+<div class="container">
+
+    <div class="card" id="app" style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+        <div style="flex:1; min-width:250px;">
+            <h2>Aplicativo de Saúde (App Inventor)</h2>
+            <p>Este aplicativo foi desenvolvido utilizando o MIT App Inventor com o objetivo de calcular o IMC (Índice de Massa Corporal) de forma simples e rápida. O app permite que o usuário insira seu peso e altura, retornando automaticamente o resultado junto com a classificação.</p>
+
+            <p>Além disso, o aplicativo apresenta diferentes níveis de classificação, como baixo peso, normal, excesso de peso e graus de obesidade, ajudando o usuário a entender melhor sua condição física.</p>
+
+           <a href="project.apk" download>
+         <button>📱 Baixar Aplicativo</button> </a>
+        </div>
+
+        <div style="flex:1; min-width:250px; text-align:center;">
+            <div class="celular" style="display:inline-block; padding:18px 12px 12px 12px; border-radius:30px; background:#111; box-shadow:0 10px 25px rgba(0,0,0,0.3); position:relative;">
+                <!-- Notch / câmera -->
+                <div style="position:absolute; top:6px; left:50%; transform:translateX(-50%); width:90px; height:14px; background:#000; border-radius:10px;"></div>
+                <img src="c:\Users\aluno\Pictures\Saved Pictures\WhatsApp Image 2026-06-06 at 11.17.19.jpeg" style="width:100%; max-width:250px; border-radius:20px; display:block; margin-top:10px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="imc">
+        <h2>Calculadora de IMC</h2>
+        <input type="number" id="peso" placeholder="Peso (kg)">
+        <input type="number" id="altura" placeholder="Altura (m)">
+        <button onclick="calcularIMC()">Calcular IMC</button>
+        <p id="resultado"></p>
+
+        <table>
+            <tr><th>IMC</th><th>Classificação</th></tr>
+            <tr><td>< 18.5</td><td>Baixo peso</td></tr>
+            <tr><td>18.5 - 24.9</td><td>Normal</td></tr>
+            <tr><td>25 - 29.9</td><td>Excesso de peso</td></tr>
+            <tr><td>30 - 34.9</td><td>Obesidade Leve (Grau 1)</td></tr>
+            <tr><td>35 - 39.9</td><td>Obesidade Severa (Grau 2)</td></tr>
+            <tr><td>>= 40</td><td>Obesidade Mórbida (Grau 3)</td></tr>
+        </table>
+    </div>
+
+    <div class="card" id="dicas">
+        <h2>Dicas de Saúde</h2>
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352" style="width:100%; border-radius:10px; margin-bottom:10px;">
+        <ul>
+            <li onclick="toggleTexto(this)" style="cursor:pointer;">
+                💧 <strong>Beba pelo menos 2L de água por dia</strong>
+                <p class="texto" style="display:none;">A hidratação é essencial para o funcionamento do corpo. A água ajuda na circulação sanguínea, na digestão e até na saúde da pele. Além disso, manter-se hidratado melhora a disposição e o desempenho no dia a dia.</p>
+            </li>
+            <li onclick="toggleTexto(this)" style="cursor:pointer;">
+                🥗 <strong>Prefira alimentos naturais</strong>
+                <p class="texto" style="display:none;">Alimentos naturais são ricos em nutrientes importantes como vitaminas e minerais. Evitar produtos industrializados ajuda a reduzir o consumo de açúcar, gordura e conservantes, contribuindo para uma vida mais saudável.</p>
+            </li>
+            <li onclick="toggleTexto(this)" style="cursor:pointer;">
+                🏃 <strong>Faça exercícios 3x por semana</strong>
+                <p class="texto" style="display:none;">A prática regular de atividades físicas melhora a saúde do coração, fortalece os músculos e ajuda no controle do peso. Além disso, exercícios liberam hormônios que ajudam a reduzir o estresse e a ansiedade.</p>
+            </li>
+            <li onclick="toggleTexto(this)" style="cursor:pointer;">
+                😴 <strong>Durma entre 7-8 horas</strong>
+                <p class="texto" style="display:none;">O sono é fundamental para a recuperação do corpo e da mente. Dormir bem melhora a memória, o humor e a concentração, além de ajudar no equilíbrio hormonal e no fortalecimento do sistema imunológico.</p>
+            </li>
+            <li onclick="toggleTexto(this)" style="cursor:pointer;">
+                🧠 <strong>Cuide da saúde mental</strong>
+                <p class="texto" style="display:none;">A saúde mental é tão importante quanto a física. Reservar um tempo para relaxar, conversar com pessoas de confiança e cuidar do bem-estar emocional ajuda a evitar problemas como ansiedade e estresse excessivo.</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card" id="habitos">
+        <h2>Controle de Hábitos</h2>
+        <input type="text" id="habito" placeholder="Ex: Beber água">
+        <button onclick="adicionarHabito()">Adicionar hábito</button>
+        <ul id="listaHabitos"></ul>
+    </div>
+
+</div>
+
+<footer>
+    <p>Projeto desenvolvido por Breno 🚀</p>
+</footer>
+
+<script>
+function calcularIMC() {
+    let peso = document.getElementById('peso').value;
+    let altura = document.getElementById('altura').value;
+
+    if(peso === '' || altura === '') {
+        let resultadoEl = document.getElementById('resultado');
+
+    resultadoEl.innerText = `Seu IMC é ${imc.toFixed(2)} (${classificacao})`;
+
+    // Cores por classificação
+    if(imc < 18.5) resultadoEl.style.background = '#3498db';
+    else if(imc < 24.9) resultadoEl.style.background = '#2ecc71';
+    else if(imc < 29.9) resultadoEl.style.background = '#f1c40f';
+    else if(imc < 34.9) resultadoEl.style.background = '#e67e22';
+    else if(imc < 39.9) resultadoEl.style.background = '#e74c3c';
+    else resultadoEl.style.background = '#8e44ad';
+
+    resultadoEl.style.color = 'white';
+        return;
+    }
+
+    let imc = peso / (altura * altura);
+    let classificacao = '';
+
+    if(imc < 18.5) classificacao = 'Baixo peso';
+    else if(imc < 24.9) classificacao = 'Normal';
+    else if(imc < 29.9) classificacao = 'Excesso de peso';
+    else if(imc < 34.9) classificacao = 'Obesidade Leve (Grau 1)';
+    else if(imc < 39.9) classificacao = 'Obesidade Severa (Grau 2)';
+    else classificacao = 'Obesidade Mórbida (Grau 3)';
+
+    document.getElementById('resultado').innerText =
+        `Seu IMC é ${imc.toFixed(2)} (${classificacao})`;
+}
+
+function adicionarHabito() {
+    let input = document.getElementById('habito');
+    let lista = document.getElementById('listaHabitos');
+
+    if(input.value === '') return;
+
+    let li = document.createElement('li');
+    li.style.marginBottom = '10px';
+
+    li.innerHTML = `
+        <span>${input.value}</span>
+        <button onclick="removerHabito(this)" style="width:auto; margin-left:10px; background:#e74c3c; padding:6px 10px; border-radius:5px;">❌ Remover</button>
+    `;
+
+    lista.appendChild(li);
+
+    salvarHabitos();
+    input.value = '';
+}
+
+function salvarHabitos() {
+    let itens = [];
+    document.querySelectorAll('#listaHabitos li').forEach(li => {
+        itens.push(li.textContent);
+    });
+    localStorage.setItem('habitos', JSON.stringify(itens));
+}
+
+function carregarHabitos() {
+    let dados = JSON.parse(localStorage.getItem('habitos')) || [];
+    let lista = document.getElementById('listaHabitos');
+
+    dados.forEach(item => {
+        let li = document.createElement('li');
+        li.style.marginBottom = '10px';
+
+        li.innerHTML = `
+            <span>${item}</span>
+            <button onclick="removerHabito(this)" style="width:auto; margin-left:10px; background:#e74c3c; padding:6px 10px; border-radius:5px;">❌ Remover</button>
+        `;
+
+        lista.appendChild(li);
+    });
+    };
+
+
+carregarHabitos();
+
+function verApp() {
+    window.location.href = "project.apk";
+}
+
+
+function removerHabito(botao) {
+    botao.parentElement.remove();
+    salvarHabitos();
+}
+
+function toggleTexto(elemento) {
+    let texto = elemento.querySelector('.texto');
+    if (texto.style.display === 'none') {
+        texto.style.display = 'block';
+    } else {
+        texto.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>
