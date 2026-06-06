@@ -134,7 +134,6 @@
 
         <div style="flex:1; min-width:250px; text-align:center;">
             <div class="celular" style="display:inline-block; padding:18px 12px 12px 12px; border-radius:30px; background:#111; box-shadow:0 10px 25px rgba(0,0,0,0.3); position:relative;">
-                <!-- Notch / câmera -->
                 <div style="position:absolute; top:6px; left:50%; transform:translateX(-50%); width:90px; height:14px; background:#000; border-radius:10px;"></div>
                 <img src="img/app.jpeg" style="width:100%; max-width:250px; border-radius:20px; display:block; margin-top:10px;">
             </div>
@@ -203,36 +202,40 @@
 function calcularIMC() {
     let peso = document.getElementById('peso').value;
     let altura = document.getElementById('altura').value;
+    let resultadoEl = document.getElementById('resultado');
 
     if(peso === '' || altura === '') {
-        let resultadoEl = document.getElementById('resultado');
-
-    resultadoEl.innerText = `Seu IMC é ${imc.toFixed(2)} (${classificacao})`;
-
-    // Cores por classificação
-    if(imc < 18.5) resultadoEl.style.background = '#3498db';
-    else if(imc < 24.9) resultadoEl.style.background = '#2ecc71';
-    else if(imc < 29.9) resultadoEl.style.background = '#f1c40f';
-    else if(imc < 34.9) resultadoEl.style.background = '#e67e22';
-    else if(imc < 39.9) resultadoEl.style.background = '#e74c3c';
-    else resultadoEl.style.background = '#8e44ad';
-
-    resultadoEl.style.color = 'white';
+        resultadoEl.innerText = "Por favor, preencha o peso e a altura!";
+        resultadoEl.style.background = "#e74c3c";
+        resultadoEl.style.color = "white";
         return;
     }
 
     let imc = peso / (altura * altura);
     let classificacao = '';
 
-    if(imc < 18.5) classificacao = 'Baixo peso';
-    else if(imc < 24.9) classificacao = 'Normal';
-    else if(imc < 29.9) classificacao = 'Excesso de peso';
-    else if(imc < 34.9) classificacao = 'Obesidade Leve (Grau 1)';
-    else if(imc < 39.9) classificacao = 'Obesidade Severa (Grau 2)';
-    else classificacao = 'Obesidade Mórbida (Grau 3)';
+    if(imc < 18.5) {
+        classificacao = 'Baixo peso';
+        resultadoEl.style.background = '#3498db';
+    } else if(imc < 24.9) {
+        classificacao = 'Normal';
+        resultadoEl.style.background = '#2ecc71';
+    } else if(imc < 29.9) {
+        classificacao = 'Excesso de peso';
+        resultadoEl.style.background = '#f1c40f';
+    } else if(imc < 34.9) {
+        classificacao = 'Obesidade Leve (Grau 1)';
+        resultadoEl.style.background = '#e67e22';
+    } else if(imc < 39.9) {
+        classificacao = 'Obesidade Severa (Grau 2)';
+        resultadoEl.style.background = '#e74c3c';
+    } else {
+        classificacao = 'Obesidade Mórbida (Grau 3)';
+        resultadoEl.style.background = '#8e44ad';
+    }
 
-    document.getElementById('resultado').innerText =
-        `Seu IMC é ${imc.toFixed(2)} (${classificacao})`;
+    resultadoEl.innerText = `Seu IMC é ${imc.toFixed(2)} (${classificacao})`;
+    resultadoEl.style.color = 'white';
 }
 
 function adicionarHabito() {
@@ -245,7 +248,7 @@ function adicionarHabito() {
     li.style.marginBottom = '10px';
 
     li.innerHTML = `
-        <span>${input.value}</span>
+        <span class="nome-habito">${input.value}</span>
         <button onclick="removerHabito(this)" style="width:auto; margin-left:10px; background:#e74c3c; padding:6px 10px; border-radius:5px;">❌ Remover</button>
     `;
 
@@ -257,8 +260,9 @@ function adicionarHabito() {
 
 function salvarHabitos() {
     let itens = [];
-    document.querySelectorAll('#listaHabitos li').forEach(li => {
-        itens.push(li.textContent);
+    // Pega apenas o texto do span, para não salvar a palavra "Remover" junto
+    document.querySelectorAll('#listaHabitos li .nome-habito').forEach(span => {
+        itens.push(span.textContent);
     });
     localStorage.setItem('habitos', JSON.stringify(itens));
 }
@@ -272,21 +276,15 @@ function carregarHabitos() {
         li.style.marginBottom = '10px';
 
         li.innerHTML = `
-            <span>${item}</span>
+            <span class="nome-habito">${item}</span>
             <button onclick="removerHabito(this)" style="width:auto; margin-left:10px; background:#e74c3c; padding:6px 10px; border-radius:5px;">❌ Remover</button>
         `;
 
         lista.appendChild(li);
     });
-    };
-
-
-carregarHabitos();
-
-function verApp() {
-    window.location.href = "project.apk";
 }
 
+carregarHabitos();
 
 function removerHabito(botao) {
     botao.parentElement.remove();
